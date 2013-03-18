@@ -45,7 +45,7 @@ class CaptureLog(object):
         if not self._log:
             return
 
-        self.write('---------- LOG CLOSED AT: {0} UTC'.format(datetime.utcnow().isoformat()))
+        self.write('---------- LOG ENDED AT: {0} UTC'.format(datetime.utcnow().isoformat()))
         text = self._log.getvalue()
         self._log = None
         if self._mail_cfg:

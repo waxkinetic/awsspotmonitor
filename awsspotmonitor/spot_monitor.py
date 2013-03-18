@@ -357,5 +357,5 @@ class AwsSpotMonitor(object):
         :param id: specifies the instance ID.
         :return: the instance object, or None.
         """
-        lst = self._conn.get_all_instances(id)
-        return lst[0] if lst else None
+        r = self._conn.get_all_instances(id)
+        return r[0].instances[0] if r and r[0].instances else None
