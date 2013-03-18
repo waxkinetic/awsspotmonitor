@@ -4,7 +4,7 @@ from __future__ import absolute_import
 import unittest
 
 # package
-from dj_tools.spot_monitor import *
+from .spot_monitor import *
 
 
 class AwsSpotMonitor_test(unittest.TestCase):
