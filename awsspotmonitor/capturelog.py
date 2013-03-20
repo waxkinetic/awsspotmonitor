@@ -41,7 +41,6 @@ class CaptureLog(object):
         text = self._log.getvalue()
         self._log = None
         if self._mail_cfg:
-            print('SENDING LOG.')
             send_plaintext_msg(
                 self._mail_cfg,
                 *create_plaintext_msg(
@@ -54,6 +53,15 @@ class CaptureLog(object):
         return self._log if self._log else sys.stdout
 
     def start_capture(self):
+        if self._mail_cfg:
+            send_plaintext_msg(
+                self._mail_cfg
+                *create_plaintext_msg(
+                    self._mail_cfg['subject'],
+                    self._mail_cfg['sender'],
+                    self._mail_cfg['recipients'],
+                    'Capture log opened at: {0} UTC'.format(datetime.utcnow().isoformat())))
+
         self._log = StringIO()
         self.write('---------- LOG STARTED AT: {0} UTC'.format(datetime.utcnow().isoformat()))
 
